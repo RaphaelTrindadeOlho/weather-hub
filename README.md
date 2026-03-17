@@ -66,11 +66,39 @@ Weather-Hub/
 
 ### Pré-requisitos
 
-- **Node.js** (v16.0.0 ou superior)
-- **npm** ou **yarn**
+- **Docker** e **Docker Compose** (recomendado)
+- **Node.js** (v16.0.0 ou superior) - *apenas se rodar localmente sem Docker*
+- **npm** ou **yarn** - *apenas se rodar localmente sem Docker*
 - **Chave de API OpenWeatherMap** (gratuita em [openweathermap.org](https://openweathermap.org/api))
 
-### Instalação e Execução
+### 🐳 Instalação e Execução com Docker (Recomendado)
+
+#### 1. Clonar o repositório
+```bash
+git clone https://github.com/seu-usuario/Weather-Hub.git
+cd Weather-Hub
+```
+
+#### 2. Configurar variável de ambiente
+
+Crie um arquivo `.env` na pasta `backend/`:
+
+```env
+API_KEY=sua_chave_openweathermap_aqui
+```
+
+#### 3. Iniciar com Docker Compose
+
+```bash
+docker compose up --build
+```
+
+#### 4. Acessar a aplicação
+
+- **Frontend**: http://localhost:5173
+- **Backend API**: http://localhost:3000
+
+### 💻 Instalação e Execução Local (Sem Docker)
 
 #### 1. Clonar o repositório
 ```bash
@@ -87,10 +115,10 @@ cd backend
 npm install
 
 # Definir variável de ambiente
-set API_KEY=sua_chave_openweathermap_aqui
+export API_KEY=sua_chave_openweathermap_aqui
 
 # Iniciar servidor (porta 3000)
-node app.js
+npm run dev
 ```
 
 #### 3. Configurar Frontend (em outro terminal)
@@ -114,7 +142,50 @@ http://localhost:5173
 
 ---
 
-## 📡 API Endpoints
+## � Docker - Estrutura
+
+### Dockerfiles
+
+**Backend** (`backend/Dockerfile`):
+- Node.js 20 slim
+- Instala dependências e executa `npm run dev`
+- Expõe porta 3000
+
+**Frontend** (`frontend/Dockerfile`):
+- Node.js 20 slim
+- Instala dependências e executa `npm run dev`
+- Expõe porta 5173
+
+### Docker Compose
+
+O arquivo `docker-compose.yml` orquestra:
+- Serviço `backend`: API Express na porta 3000
+- Serviço `frontend`: Vite na porta 5173
+- Volume compartilhado para hot-reload
+- `.dockerignore` para otimizar tamanho das imagens
+
+### Comandos Úteis Docker
+
+```bash
+# Build e iniciar containers
+docker compose up --build
+
+# Parar containers
+docker compose stop
+
+# Remover containers e volumes
+docker compose down
+
+# Ver logs em tempo real
+docker compose logs -f
+
+# Ver logs de um serviço específico
+docker compose logs -f backend
+```
+
+---
+
+## �📡 API Endpoints
 
 ### POST `/weather`
 
@@ -253,11 +324,23 @@ Este projeto aborda os seguintes conceitos:
 
 - **APIs RESTful**: Construção e consumo de endpoints HTTP
 - **CORS**: Compartilhamento seguro de recursos entre domínios
-- **Requisições HTTP**: GET, POST, HTTPS para APIs externas
-- **React Hooks**: useState para gerenciamento de estado
-- **Componentes React**: Estrutura e reutilização
-- **Vite**: Build tool moderno para melhor performance
-- **Express.js**: Roteamento e middleware
+### Frameworks e Ferramentas
+- [Express.js Docs](https://expressjs.com/pt-br/)
+- [React Official Docs](https://pt-br.react.dev/)
+- [Vite Documentation](https://vitejs.dev/)
+- [OpenWeatherMap API](https://openweathermap.org/api)
+- [MDN - CORS](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/CORS)
+
+### DevOps e Versionamento
+- [Docker Documentation](https://docs.docker.com/)
+- [Docker Compose Documentation](https://docs.docker.com/compose/)
+- [Git Documentation](https://git-scm.com/doc)
+- [Conventional Commits](https://www.conventionalcommits.org/pt-br/)
+
+### IAs Auxiliadoras
+- [GitHub Copilot - Claude Haiku](https://github.com/features/copilot)
+- [Google Gemini Pro](https://gemini.google.com/)
+- [Claude AI](https://claude.ai/
 
 ---
 
