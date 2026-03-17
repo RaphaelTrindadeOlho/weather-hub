@@ -37,27 +37,32 @@ Uma aplicação Full Stack para consulta de dados meteorológicos em tempo real.
 
 ```
 Weather-Hub/
+├── docker-compose.yml         # Orquestração de containers (backend e frontend)
+├── README.md                  # Documentação do projeto
+│
 ├── backend/
 │   ├── app.js                 # Servidor Express e endpoints
+│   ├── Dockerfile             # Configuração para imagem Docker
+│   ├── .dockerignore          # Arquivos ignorados na build Docker
 │   └── package.json           # Dependências do backend
 │
 ├── frontend/
-│   ├── src/
-│   │   ├── App.jsx            # Componente principal
-│   │   ├── App.css            # Estilos globais
-│   │   ├── main.jsx           # Entrada da aplicação
-│   │   ├── index.css          # Resets e variáveis CSS
-│   │   └── assets/
-│   │       └── components/
-│   │           ├── FormClimate.jsx        # Formulário de busca
-│   │           └── ExibitionClimate.jsx   # Exibição de dados
+│   ├── Dockerfile             # Configuração para imagem Docker
+│   ├── .dockerignore          # Arquivos ignorados na build Docker
+│   ├── README.md              # Documentação específica do frontend
 │   ├── vite.config.js         # Configuração do Vite
 │   ├── eslint.config.js       # Configuração do ESLint
 │   ├── package.json           # Dependências do frontend
-│   └── index.html             # HTML base
-│
-└── README.md
-
+│   ├── index.html             # HTML base
+│   └── src/
+│       ├── App.jsx            # Componente principal
+│       ├── App.css            # Estilos globais
+│       ├── main.jsx           # Entrada da aplicação
+│       ├── index.css          # Resets e variáveis CSS
+│       └── assets/
+│           └── components/
+│               ├── FormClimate.jsx        # Formulário de busca
+│               └── ExibitionClimate.jsx   # Exibição de dados
 ```
 
 ---
