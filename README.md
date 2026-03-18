@@ -371,8 +371,8 @@ Este projeto está sob a licença **ISC**. Veja detalhes no arquivo `package.jso
 
 **Raphael** - Estudante de Full Stack Development
 
-- GitHub: [@seu-usuario](https://github.com/seu-usuario)
-- Email: seu-email@exemplo.com
+- GitHub: [@RaphaelTrindadeOlho](https://github.com/RaphaelTrindadeOlho)
+- Email: raphaeltrindadeolho@gmail.com
 
 ---
 
