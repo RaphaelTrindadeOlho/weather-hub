@@ -3,13 +3,13 @@ const app = express();
 const cors = require('cors');
 
 app.use(cors());
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const API_KEY = process.env.API_KEY;
 
-app.post('/api/weather', async (req, res) => {
+app.post('/weather', async (req, res) => {
   const city = req.body.city;
+
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`;
 
   try {
@@ -20,13 +20,14 @@ app.post('/api/weather', async (req, res) => {
       return res.status(data.cod || 500).json({ error: data.message || 'Erro ao obter dados do clima' });
     }
 
-    const { main, weather } = data;
+    const filteredData = {
+      temperature: Math.round(data.main.temp),
+      description: data.weather[0].description,
+      iconUrl: `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`
+    };
 
-    res.json({
-      temperature: main.temp,
-      description: weather[0].description,
-      icon: `http://openweathermap.org/img/wn/${weather[0].icon}.png`
-    });
+    res.json(filteredData);
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao obter dados do clima' });
